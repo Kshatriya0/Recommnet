@@ -2,10 +2,10 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import pyperclip
+import pyautogui
 import time
 
-def clickComment():
-    
+def clickComment(): 
     driver.find_element(By.NAME, 'mainFrame').send_keys(Keys.SPACE)
     time.sleep(2)
     driver.switch_to.frame("mainFrame")
@@ -20,9 +20,23 @@ def Login(myId, myPw):
             driver.switch_to.window(handle)
             break
 
-    id = driver.find_element(By.ID, "id")
+    idBox = driver.find_element(By.ID, "id")
+    idBox.click()
     pyperclip.copy(myId)
-    pw = driver.find_element(By.ID, "pw")
+    pyautogui.hotkey("command")
+    pyautogui.hotkey("command", "v")
+    time.sleep(1)  # 입력 후 잠시 대기
+    
+    pwBox = driver.find_element(By.ID, "pw")
+    pwBox.click()
+    pyperclip.copy(myPw)
+    pyautogui.hotkey("command", "v")
+    time.sleep(1)
+
+    loginBtn = driver.find_element(By.ID, "log.login")
+    loginBtn.click()
+
+    driver.switch_to.window(main_window)
 
 
     #commentBox.send_keys('안녕하세요')
@@ -40,3 +54,4 @@ myPw = "6746Kmv+"
 clickComment()
 Login(myId, myPw)
 time.sleep(2)
+clickComment()
