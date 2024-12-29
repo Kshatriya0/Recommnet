@@ -53,7 +53,7 @@ def makeComment(comment):
 myId = input("Id를 입력하세요")
 myPw = input("Pw를 입력하세요")
 
-url = "https://blog.naver.com/bbirdsh/223707265629"
+url = input("블로그 링크를 입력해주세요")
 driver = webdriver.Chrome() 
 driver.get(url)
 time.sleep(3)
